@@ -11,9 +11,18 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import json, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+CONFIG_SECRET_FILE = os.path.join(BASE_DIR, 'secret_key.json')
+
+config_secret = json.loads(open(CONFIG_SECRET_FILE).read())
+def get_secret(setting, secret=config_secret):
+    try:
+        return config_secret[setting]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +36,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# KAKAO map api key
+KAKAO_API_KEY = get_secret("KAKAO_API_KEY")
+DATA_API_KEY = get_secret("DATA_API_KEY")
 
 # Application definition
 
@@ -37,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mainpage',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +67,7 @@ ROOT_URLCONF = 'EVM.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': []
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,6 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

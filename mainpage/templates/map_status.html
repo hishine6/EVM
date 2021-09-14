@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+    <script type="text/javascript" src="{% static 'js/map_status.js' %}"></script>
+    <div id="map" style="width:500px;height:500px;"></div>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ Key }}"></script>
+
+    <script>
+        initMap();
+    </script>
+    <input type="button" value="Update API Data"/>
+
+{% endblock %}
