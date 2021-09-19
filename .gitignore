@@ -3,4 +3,5 @@
 mainpage/__pycache__/
 EVM/__pycache__/
 .idea/
-/secret_key.json
+secret_key.json
+.static_root/
