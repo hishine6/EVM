@@ -2,13 +2,23 @@
 {% load static %}
 {% block content %}
     <script type="text/javascript" src="{% static 'js/map_status.js' %}"></script>
-    <div id="map" style="width:500px;height:500px;"></div>
 
+    <div class="sidebar">
+         <li>
+             <a href="#" class="button_wrapper" >Search</a>
+         </li>
+         <li>
+             <a href="#" class="button_wrapper" >Update API Data</a>
+         </li>
+    </div>
+
+    <div class="map_wrapper">
+        <div id="map" class="map"></div>
+    </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ Key }}"></script>
-
     <script>
         initMap();
     </script>
-    <input type="button" value="Update API Data"/>
+
 
 {% endblock %}

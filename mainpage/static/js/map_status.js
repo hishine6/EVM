@@ -6,7 +6,6 @@ function initMap(){
     var options = {
         center: new kakao.maps.LatLng(map_center.lat,map_center.lng),
         level: 2
-
     };
     map = new kakao.maps.Map(container, options);
 }

@@ -12,7 +12,7 @@ def main_page(request):
 
 def map_status(request):
     context = {'Key' : KAKAO_API_KEY}
-    ret = get_data()
-    print("hello")
-    print(ret.text)
+    if (request.method == 'POST'):
+        ret = get_data()
+
     return render(request, 'map_status.html',context)
