@@ -28,8 +28,6 @@ def get_secret(setting, secret=config_secret):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-te3$eltisese8%f29v8_pv-gxrttx^#mzal2)e@_@%fbqut!q('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +38,8 @@ ALLOWED_HOSTS = []
 KAKAO_API_KEY = get_secret("KAKAO_API_KEY")
 DATA_API_KEY = get_secret("DATA_API_KEY")
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = get_secret("DJANGO_SECRET_KEY")
 # Application definition
 
 INSTALLED_APPS = [
