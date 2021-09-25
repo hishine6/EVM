@@ -18,7 +18,7 @@ serviceKey = parse.unquote(serviceKey_utf8, 'UTF-8')
 
 def get_data():
     url = 'http://apis.data.go.kr/B552584/EvCharger/getChargerInfo'
-    for i in range(10):
+    for i in range(1,10):
         params = {
             "ServiceKey": serviceKey,
             "pageNo": i,
@@ -58,10 +58,7 @@ def get_data():
             else:
                 _statupddt = datetime.datetime.now()
 
-            try:
-                _charge_station = charge_station.objects.get(statid=item_dict['statid'])
-            except:
-                _charge_station = charge_station(statid=item_dict['statid'],
+            _charge_station = charge_station(statid=item_dict['statid'],
                                                  statnm = item_dict['statnm'],
                                                  chgerid=item_dict['chgerid'],
                                                  chagertype=item_dict['chgertype'],
@@ -78,7 +75,7 @@ def get_data():
                                                  zcode=item_dict['zcode'],
                                                  parkingfree=_parking_free,
                                                  note=item_dict['note'])
-                _charge_station.save()
+            _charge_station.save()
         print(i)
         print(charge_station.objects.count())
     return res

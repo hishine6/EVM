@@ -1,7 +1,7 @@
 from django.db import models
 
 class charge_station(models.Model):
-    statid = models.CharField(primary_key=True, max_length=8)
+    statid = models.CharField(max_length=8)
     statnm = models.CharField(max_length=100)
     chgerid = models.CharField(max_length=2)
     chagertype = models.CharField(max_length=2)
@@ -18,3 +18,6 @@ class charge_station(models.Model):
     zcode = models.CharField(max_length=2)
     parkingfree = models.BooleanField()
     note = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = (("statid"),("chgerid"),)
