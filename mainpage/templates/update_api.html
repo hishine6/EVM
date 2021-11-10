@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+    <script type="text/javascript" src="{% static 'js/map_status.js' %}"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ Key }}&libraries=clusterer,services"></script>
+    <div class="sidebar">
+        <li>
+            <a href="{% url 'map_status' %}" class="button_wrapper" ><i class="fas fa-map-marked-alt"></i><br>Map</a>
+        </li>
+        <li>
+            <a href="{% url 'list_status' %}" class="button_wrapper" ><i class="fas fa-list"></i><br>List</a>
+        </li>
+        <li>
+            <a href="{% url 'update_api' %}" class="button_wrapper" ><i class="fas fa-wrench"></i><br>Update API</a>
+        </li>
+    </div>
+
+
+    <div class="map_wrapper">
+       <div class="loader"></div>
+    </div>
+
+
+
+{% endblock %}

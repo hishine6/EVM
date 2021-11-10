@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+    <script type="text/javascript" src="{% static 'js/map_status.js' %}"></script>
+    <div class="sidebar">
+        <li>
+            <a href="{% url 'map_status' %}" class="button_wrapper" ><i class="fas fa-map-marked-alt"></i><br>Map</a>
+        </li>
+        <li>
+            <a href="{% url 'list_status' %}" class="button_wrapper" ><i class="fas fa-list"></i><br>List</a>
+        </li>
+        <li>
+            <a href="{% url 'update_api' %}" class="button_wrapper" ><i class="fas fa-wrench"></i><br>Update API</a>
+        </li>
+    </div>
+
+    <div class="map_wrapper">
+        <div class="loader"></div>
+        <table>
+            <colgroup>
+                <col style="width: 4%;">
+                <col style="width: 15%;">
+                <col style="width: 20%;">
+                <col style="width: 13%;">
+                <col style="width: auto;">
+                <col style="width: 9%;">
+                <col style="width: 5%;">
+                <col style="width: 5%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Station ID</th>
+                    <th>Station Name</th>
+                    <th>Address</th>
+                    <th>Available Time</th>
+                    <th>Call</th>
+                    <th>Parking Cost</th>
+                    <th>Status</th>
+                    <th>Update Button</th>
+            </thead>
+            <tbody>
+            {% for station in stations %}
+            <tr>
+                <td> {{ station.statid }} </td>
+                <td> {{ station.statnm }} </td>
+                <td> {{ station.addr }} </td>
+                <td> {{ station.usetime_start }} - {{ station.usetime_end }}</td>
+                <td> {{ station.busicall }} </td>
+                <td> {{ station.parkingfree }} </td>
+                <td> {{ station.stat }} </td>
+                <td>  update </td>
+            </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+    </div>
+
+
+
+{% endblock %}

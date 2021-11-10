@@ -32,7 +32,8 @@ def get_secret(setting, secret=config_secret):
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['612f-121-131-112-127.ngrok.io',
+                 '127.0.0.1']
 
 # KAKAO map api key
 KAKAO_API_KEY = get_secret("KAKAO_API_KEY")

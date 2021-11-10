@@ -4,24 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <link href="{% static 'images/Logo.ico' %}" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/layout.css' %}">
     <script src="{% static 'js/layout.js' %}" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
     <script
             src="https://kit.fontawesome.com/6fc5e22d21.js"
             crossorigin="anonymous">
+    </script>
+    <script>
+        $(window).load(function(){
+            $('.loader').delay(1000).fadeOut();
+        });
     </script>
     <title>Main Page</title>
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar__logo">
-            <a href="{% url 'main_page' %}">EVM</a>
+            <a href="{% url 'main_page' %}">
+                <img src="{% static 'images/text_logo.png' %}" width="250px" height="auto"></a>
         </div>
         <ul class="navbar__menu">
-            <li><a href="#">About Us</a></li>
+            <li><a href="{% url 'main_page' %}">About Us</a></li>
             <li>
                 <a href="{% url 'map_status' %}">Find Station</a>
             </li>
@@ -29,7 +37,7 @@
                 <a href="">Add Station</a>
             </li>
             <li>
-                <a href="">Contact</a>
+                <a href="">Community</a>
             </li>
         </ul>
         <ul class="navbar__icons">
