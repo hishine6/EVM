@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block content %}
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <script type="text/javascript" src="{% static 'js/map_status.js' %}"></script>
     <div class="sidebar">
         <li>
@@ -16,43 +21,86 @@
 
     <div class="map_wrapper">
         <div class="loader"></div>
-        <table>
+        <div> Search bar</div>
+        <table style="text-align: center">
             <colgroup>
-                <col style="width: 4%;">
-                <col style="width: 15%;">
-                <col style="width: 20%;">
-                <col style="width: 13%;">
+                <col style="width: 10%;">
                 <col style="width: auto;">
-                <col style="width: 9%;">
-                <col style="width: 5%;">
-                <col style="width: 5%;">
+                <col style="width: auto">
+                <col style="width: 15%;">
+                <col style="width: 10%;">
+                <col style="width: 8%;">
+                <col style="width: 15%;">
+                <col style="width: 8%;">
             </colgroup>
             <thead>
-                <tr>
-                    <th>Station ID</th>
-                    <th>Station Name</th>
-                    <th>Address</th>
-                    <th>Available Time</th>
-                    <th>Call</th>
-                    <th>Parking Cost</th>
-                    <th>Status</th>
-                    <th>Update Button</th>
+            <tr>
+                <th>Station ID</th>
+                <th>Station Name</th>
+                <th>Address</th>
+                <th>Available Time</th>
+                <th>Call</th>
+                <th>Parking</th>
+                <th>Charger Type</th>
+                <th>Map</th>
             </thead>
             <tbody>
             {% for station in stations %}
-            <tr>
-                <td> {{ station.statid }} </td>
-                <td> {{ station.statnm }} </td>
-                <td> {{ station.addr }} </td>
-                <td> {{ station.usetime_start }} - {{ station.usetime_end }}</td>
-                <td> {{ station.busicall }} </td>
-                <td> {{ station.parkingfree }} </td>
-                <td> {{ station.stat }} </td>
-                <td>  update </td>
-            </tr>
+                <tr>
+                    <td> {{ station.statid }} </td>
+                    <td> {{ station.statnm }} </td>
+                    <td> {{ station.addr }} </td>
+                    <td> {{ station.usetime_start }} - {{ station.usetime_end }}</td>
+                    <td> {{ station.busicall }} </td>
+                    {% if station.parkingfree == True %}
+                        <td> Pay </td>
+                    {% else %}
+                        <td> Free </td>
+                    {% endif %}
+                    {% if station.chagertype == '01' %}
+                        <td> DC차데모 </td>
+                    {% elif station.chagertype == '02' %}
+                        <td> AC완속 </td>
+                    {% elif station.chagertype == '03' %}
+                        <td> DC차데모 + AC3상 </td>
+                    {% elif station.chagertype == '04' %}
+                        <td> DC콤보 </td>
+                    {% elif station.chagertype == '05' %}
+                        <td> DC차데모 + DC콤보 </td>
+                    {% elif station.chagertype == '06' %}
+                        <td> DC차데모 + AC3상 + DC콤보 </td>
+                    {% elif station.chagertype == '07' %}
+                        <td> AC상 </td>
+                    {% endif %}
+                    <td>  Open Map </td>
+                </tr>
             {% endfor %}
             <tbody>
         </table>
+        <div class="pagination">
+            {% if stations.has_previous %}
+                <a class="pagination-action" href="?page=1">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i> </a>
+                <a class="pagination-action" href="?page={{ stations.previous_page_number }}">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+            {% endif %}
+            {% for num in stations.paginator.page_range %}
+                {% if stations.number == num %}
+                    <span class="pagination-number pagination-current">{{ num }}</span>
+                {% elif num > stations.number|add:'-3' and num < stations.number|add:'3' %}
+                    <a class="pagination-number" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if stations.has_next %}
+                <a class="pagination-action" href="?page={{ stations.next_page_number }}">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ stations.paginator.num_pages }}">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
+            {% endif %}
+        </div>
     </div>
 
 

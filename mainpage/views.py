@@ -4,6 +4,7 @@ from django.shortcuts import render
 from EVM.settings import KAKAO_API_KEY
 from mainpage.get_api import get_data
 from mainpage.models import *
+from django.core.paginator import Paginator
 
 
 def main_page(request):
@@ -35,10 +36,10 @@ def map_status(request):
     return render(request, 'map_status.html',context)
 
 def list_status(request):
-    stations = {'stations': charge_station.objects.filter(zcode='42')}
-    #stations = {'stations': charge_station.objects.all()}
-
-
+    page = request.GET.get('page',1)
+    _stations = charge_station.objects.all()
+    paginator = Paginator(_stations, 15)
+    stations = {'stations': paginator.get_page(page)}
     return render(request, 'list_status.html', stations)
 
 def map_update_status(request):
