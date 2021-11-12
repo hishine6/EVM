@@ -37,16 +37,6 @@ function initMap(){
 
 }
 
-function init_general_map(){
-    var container = document.getElementById('map');
-    var options = {
-        center: new kakao.maps.LatLng(map_center.lat,map_center.lng),
-        level: 12
-    };
-    map = new kakao.maps.Map(container, options);
-    //update_map();
-}
-
 function update_map(){
     var bounds = map.getBounds();
     var swLatlng = bounds.getSouthWest();

@@ -1,5 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from EVM.settings import KAKAO_API_KEY
 from mainpage.get_api import get_data
@@ -10,11 +11,11 @@ from django.core.paginator import Paginator
 def main_page(request):
     return render(request, 'main_page.html')
 
+@csrf_exempt
 def update_api(request):
     if (request.method == 'POST'):
         ret = get_data()
-    else:
-        return render(request,'update_api.html')
+    return render(request,'update_api.html')
 
 def add_station(request):
     if(request.method=='POST'):
@@ -24,15 +25,18 @@ def add_station(request):
         return render(request,'add_station.html',context)
 
 def map_status(request):
-    # 1. map center lat, lng
-    _lat = 37.54989794096065
-    _lng = 126.94100229832952
+    _statid = request.GET.get('statid','')
+    if _statid == '':
+        _lat = 37.54989794096065
+        _lng = 126.94100229832952
+    else:
+        _station = charge_station.objects.get(statid=_statid)
+        _lat = _station.lat
+        _lng = _station.lng
 
     context = {'Key' : KAKAO_API_KEY,
                'lat' : _lat,
                'lng' : _lng}
-    if (request.method == 'POST'):
-        ret = get_data()
     return render(request, 'map_status.html',context)
 
 def list_status(request):

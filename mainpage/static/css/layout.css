@@ -171,6 +171,46 @@ a{
     color: white;
 }
 
+.open_button{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.open_button:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.api_button{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.api_button:hover {
+    background-color: red;
+    color: white;
+}
+
 
 /* Map */
 .map_wrapper{
@@ -254,7 +294,7 @@ h5 {
 }
 
 table {
-    font-size: 20px;
+    font-size: 15px;
     border-collapse: collapse;
     box-shadow: 0 5px 10px #e1e5ee;
     background-color: white;
@@ -266,7 +306,7 @@ thead{
     box-shadow: 0 5px 10px #e1e5ee;
 }
 th {
-    font-size: 24px;
+    font-size: 20px;
     padding: 1rem 2rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;

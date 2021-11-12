@@ -21,7 +21,9 @@
 
     <div class="map_wrapper">
         <div class="loader"></div>
-        <div> Search bar</div>
+        <div>
+            Search bar
+        </div>
         <table style="text-align: center">
             <colgroup>
                 <col style="width: 10%;">
@@ -72,7 +74,7 @@
                     {% elif station.chagertype == '07' %}
                         <td> AC상 </td>
                     {% endif %}
-                    <td>  Open Map </td>
+                    <td> <a class="open_button" href={% url 'map_status' %}?statid={{ station.statid }}> Open Map </a></td>
                 </tr>
             {% endfor %}
             <tbody>
