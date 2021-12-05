@@ -32,7 +32,7 @@ def get_secret(setting, secret=config_secret):
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['612f-121-131-112-127.ngrok.io',
+ALLOWED_HOSTS = ['4976-121-131-112-127.ngrok.io',
                  '127.0.0.1']
 
 # KAKAO map api key
@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainpage',
+    'app_connection',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
